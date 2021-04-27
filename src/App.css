@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+#puzzle {
+  width: 400px;
+  height: 400px;
+  background-color: blueviolet;
+  border-radius: 0.75rem;
+  border-color: black;
+  border-style: solid;
+}
