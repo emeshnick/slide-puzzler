@@ -18,10 +18,15 @@ class Puzzle extends React.Component {
   }
 
   render() {
+    console.log("positions are", this.positions);
     return (
       <div id="puzzle">
-        {this.positions.map((position) => {
-          return <Square key={position} />;
+        {this.positions.map((position, idx) => {
+          if (idx < this.positions.length) {
+            return <Square key={position} tileNumber={position} />;
+          } else {
+            return <span></span>;
+          }
         })}
       </div>
     );
