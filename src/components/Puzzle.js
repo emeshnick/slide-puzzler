@@ -11,7 +11,7 @@ class Puzzle extends React.Component {
   setPositions(width) {
     const size = width ** 2;
     let idx = 1;
-    for (let i = 0; i <= size; i++) {
+    for (let i = 0; i < size; i++) {
       this.positions.push(idx);
       idx++;
     }
@@ -22,7 +22,7 @@ class Puzzle extends React.Component {
     return (
       <div id="puzzle">
         {this.positions.map((position, idx) => {
-          if (idx < this.positions.length) {
+          if (idx < this.positions.length - 1) {
             return <Square key={position} tileNumber={position} />;
           } else {
             return <span></span>;

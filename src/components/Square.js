@@ -7,22 +7,24 @@ class Square extends React.Component {
       top: "",
       left: "",
     };
+    this.setPosition = this.setPosition.bind(this);
+  }
+
+  componentDidMount() {
     this.setPosition(this.props.tileNumber);
   }
 
   setPosition(positionNum) {
     let top = Math.floor((positionNum - 1) / 5) * 40;
     let left = ((positionNum - 1) % 5) * 40;
-    console.log(top, left);
     this.setState({
       top,
       left,
+      something: "hello",
     });
-    console.log(this.state);
   }
 
   render() {
-    console.log(this.state);
     const { top, left } = this.state;
     return (
       <span
