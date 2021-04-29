@@ -25,7 +25,7 @@ class Puzzle extends React.Component {
           if (idx < this.positions.length - 1) {
             return <Square key={position} tileNumber={position} />;
           } else {
-            return <span></span>;
+            return <span key={position}></span>;
           }
         })}
       </div>
