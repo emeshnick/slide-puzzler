@@ -8,6 +8,7 @@ class Square extends React.Component {
       left: "",
     };
     this.setPosition = this.setPosition.bind(this);
+    this.moveTile = this.moveTile.bind(this);
   }
 
   componentDidMount() {
@@ -15,24 +16,28 @@ class Square extends React.Component {
   }
 
   setPosition(positionNum) {
-    let top = Math.floor((positionNum - 1) / 5) * 40;
-    let left = ((positionNum - 1) % 5) * 40;
+    let top = Math.floor(positionNum / 5) * 80;
+    let left = (positionNum % 5) * 80;
     this.setState({
       top,
       left,
-      something: "hello",
     });
+  }
+
+  moveTile() {
+    console.log("clicked tile ", this.props.tileNumber);
   }
 
   render() {
     const { top, left } = this.state;
     return (
       <span
+        onClick={this.moveTile}
         className="square"
         style={{
           position: "absolute",
-          width: "40px",
-          height: "40px",
+          width: "80px",
+          height: "80px",
           top,
           left,
         }}

@@ -10,15 +10,12 @@ class Puzzle extends React.Component {
 
   setPositions(width) {
     const size = width ** 2;
-    let idx = 1;
     for (let i = 0; i < size; i++) {
-      this.positions.push(idx);
-      idx++;
+      this.positions.push(i);
     }
   }
 
   render() {
-    console.log("positions are", this.positions);
     return (
       <div id="puzzle">
         {this.positions.map((position, idx) => {
