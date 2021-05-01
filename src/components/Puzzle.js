@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import Square from "./Square.js";
 
 class Puzzle extends React.Component {
@@ -8,6 +9,7 @@ class Puzzle extends React.Component {
     this.setPositions(5);
   }
 
+  //Move this logic to redux to change dynamically
   setPositions(width) {
     const size = width ** 2;
     for (let i = 0; i < size; i++) {
@@ -16,6 +18,7 @@ class Puzzle extends React.Component {
   }
 
   render() {
+    const { solved, width, currentPositions } = this.props.board;
     return (
       <div id="puzzle">
         {this.positions.map((position, idx) => {
@@ -30,4 +33,14 @@ class Puzzle extends React.Component {
   }
 }
 
-export default Puzzle;
+const mapState = (state) => {
+  return {
+    board: state.board,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  return {};
+};
+
+export default connect(mapState, mapDispatch)(Puzzle);
