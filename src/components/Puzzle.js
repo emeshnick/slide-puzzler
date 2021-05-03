@@ -11,13 +11,15 @@ class Puzzle extends React.Component {
   }
 
   render() {
-    const { currentPositions } = this.props;
+    const { currentPositions } = this.props.board;
     return (
       <div id="game">
         <div id="puzzle">
           {currentPositions.map((position, idx) => {
-            if (idx < currentPositions.length - 1) {
-              return <Square key={position} tileNumber={position} />;
+            if (position < currentPositions.length - 1) {
+              return (
+                <Square key={position} tileNumber={position} position={idx} />
+              );
             } else {
               return <span key={position}></span>;
             }
@@ -31,7 +33,7 @@ class Puzzle extends React.Component {
 
 const mapState = (state) => {
   return {
-    currentPositions: state.board.currentPositions,
+    board: state.board,
   };
 };
 

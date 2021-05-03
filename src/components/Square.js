@@ -4,25 +4,17 @@ import { moveSquare } from "../store/board";
 class Square extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      top: "",
-      left: "",
-    };
     this.setPosition = this.setPosition.bind(this);
     this.moveTile = this.moveTile.bind(this);
-  }
-
-  componentDidMount() {
-    this.setPosition(this.props.tileNumber);
   }
 
   setPosition(positionNum) {
     let top = Math.floor(positionNum / 5) * 80;
     let left = (positionNum % 5) * 80;
-    this.setState({
+    return {
       top,
       left,
-    });
+    };
   }
 
   moveTile() {
@@ -30,10 +22,11 @@ class Square extends React.Component {
   }
 
   render() {
-    const { top, left } = this.state;
+    const { moveSquare, position } = this.props;
+    const { top, left } = this.setPosition(position);
     return (
       <span
-        onClick={this.moveTile}
+        onClick={(position) => moveSquare(position)}
         className="square"
         style={{
           position: "absolute",

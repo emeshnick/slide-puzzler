@@ -41,7 +41,6 @@ const shuffle = (arr) => {
   var currentIndex = arr.length;
   let temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
