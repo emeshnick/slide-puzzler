@@ -24,13 +24,13 @@ export const shuffleBoard = () => {
 };
 
 export const moveSquare = (positionNum) => {
+  console.log("clicked on tile at", positionNum);
   return {
     type: MOVE_SQUARE,
     positionNum,
   };
 };
 
-//Add variable that tracks the index of the empty square to easily change the index of the empty and not empty
 const initialState = {
   solved: false,
   width: 5,

@@ -5,7 +5,6 @@ class Square extends React.Component {
   constructor(props) {
     super(props);
     this.setPosition = this.setPosition.bind(this);
-    this.moveTile = this.moveTile.bind(this);
   }
 
   setPosition(positionNum) {
@@ -17,16 +16,12 @@ class Square extends React.Component {
     };
   }
 
-  moveTile() {
-    console.log("clicked tile ", this.props.tileNumber);
-  }
-
   render() {
     const { moveSquare, position } = this.props;
     const { top, left } = this.setPosition(position);
     return (
       <span
-        onClick={(position) => moveSquare(position)}
+        onClick={() => moveSquare(position)}
         className="square"
         style={{
           position: "absolute",
