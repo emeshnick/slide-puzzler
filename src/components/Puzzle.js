@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createBoard } from "../store/board";
+import { createBoard, shuffleBoard } from "../store/board";
 import Square from "./Square.js";
 
 class Puzzle extends React.Component {
@@ -13,14 +13,17 @@ class Puzzle extends React.Component {
   render() {
     const { currentPositions } = this.props;
     return (
-      <div id="puzzle">
-        {currentPositions.map((position, idx) => {
-          if (idx < currentPositions.length - 1) {
-            return <Square key={position} tileNumber={position} />;
-          } else {
-            return <span key={position}></span>;
-          }
-        })}
+      <div id="game">
+        <div id="puzzle">
+          {currentPositions.map((position, idx) => {
+            if (idx < currentPositions.length - 1) {
+              return <Square key={position} tileNumber={position} />;
+            } else {
+              return <span key={position}></span>;
+            }
+          })}
+        </div>
+        <button onClick={this.props.shuffleBoard}>Shuffle</button>
       </div>
     );
   }
@@ -35,6 +38,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     createBoard: (width) => dispatch(createBoard(width)),
+    shuffleBoard: () => dispatch(shuffleBoard()),
   };
 };
 
