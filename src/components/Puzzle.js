@@ -1,28 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createBoard } from "../store/board";
 import Square from "./Square.js";
 
 class Puzzle extends React.Component {
   constructor(props) {
     super(props);
     this.positions = [];
-    this.setPositions(5);
-  }
-
-  //Move this logic to redux to change dynamically
-  setPositions(width) {
-    const size = width ** 2;
-    for (let i = 0; i < size; i++) {
-      this.positions.push(i);
-    }
+    this.props.createBoard(5);
   }
 
   render() {
-    const { solved, width, currentPositions } = this.props.board;
+    const { currentPositions } = this.props;
     return (
       <div id="puzzle">
-        {this.positions.map((position, idx) => {
-          if (idx < this.positions.length - 1) {
+        {currentPositions.map((position, idx) => {
+          if (idx < currentPositions.length - 1) {
             return <Square key={position} tileNumber={position} />;
           } else {
             return <span key={position}></span>;
@@ -35,12 +28,14 @@ class Puzzle extends React.Component {
 
 const mapState = (state) => {
   return {
-    board: state.board,
+    currentPositions: state.board.currentPositions,
   };
 };
 
 const mapDispatch = (dispatch) => {
-  return {};
+  return {
+    createBoard: (width) => dispatch(createBoard(width)),
+  };
 };
 
 export default connect(mapState, mapDispatch)(Puzzle);

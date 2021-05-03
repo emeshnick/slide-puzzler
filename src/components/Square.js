@@ -1,5 +1,6 @@
 import React from "react";
-
+import { connect } from "react-redux";
+import { moveSquare } from "../store/board";
 class Square extends React.Component {
   constructor(props) {
     super(props);
@@ -46,4 +47,16 @@ class Square extends React.Component {
   }
 }
 
-export default Square;
+const mapState = (state) => {
+  return {
+    currentPositions: state.board.currentPositions,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    moveSquare: (positionNum) => dispatch(moveSquare(positionNum)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Square);

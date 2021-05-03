@@ -1,7 +1,7 @@
 const CREATE_BOARD = "CREATE_BOARD";
 const MOVE_SQUARE = "MOVE_SQUARE";
 
-const createBoard = (width) => {
+export const createBoard = (width) => {
   //Create logic to shuffle the initial positions of the board
   const size = width ** 2;
   const initialPositions = [];
@@ -16,7 +16,7 @@ const createBoard = (width) => {
   };
 };
 
-const moveSquare = (positionNum) => {
+export const moveSquare = (positionNum) => {
   return {
     type: MOVE_SQUARE,
     positionNum,
