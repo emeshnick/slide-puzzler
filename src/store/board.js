@@ -89,7 +89,7 @@ const board = (state = initialState, action) => {
         state.width,
         state.currentPositions
       );
-      return state;
+      return { ...state, currentPositions: movedPositions };
     default:
       return state;
   }

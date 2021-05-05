@@ -17,7 +17,7 @@ class Square extends React.Component {
   }
 
   render() {
-    const { moveSquare, position } = this.props;
+    const { moveSquare, position, tileNumber } = this.props;
     const { top, left } = this.setPosition(position);
     return (
       <span
@@ -30,7 +30,9 @@ class Square extends React.Component {
           top,
           left,
         }}
-      ></span>
+      >
+        <p>{tileNumber + 1}</p>
+      </span>
     );
   }
 }
