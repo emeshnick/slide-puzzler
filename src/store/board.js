@@ -53,6 +53,25 @@ const shuffle = (arr) => {
   return arr;
 };
 
+const changePositions = (positionNum, width, arr) => {
+  let temp = arr[positionNum];
+  let isEmpty = width ** 2 - 1;
+  if (arr[positionNum - 1] === isEmpty) {
+    arr[positionNum] = arr[positionNum - 1];
+    arr[positionNum - 1] = temp;
+  } else if (arr[positionNum + 1] === isEmpty) {
+    arr[positionNum] = arr[positionNum + 1];
+    arr[positionNum + 1] = temp;
+  } else if (arr[positionNum - width] === isEmpty) {
+    arr[positionNum] = arr[positionNum - width];
+    arr[positionNum - width] = temp;
+  } else if (arr[positionNum + width] === isEmpty) {
+    arr[positionNum] = arr[positionNum + width];
+    arr[positionNum + width] = temp;
+  }
+  return arr;
+};
+
 const board = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_BOARD:
@@ -65,6 +84,11 @@ const board = (state = initialState, action) => {
       const newPositions = shuffle(state.currentPositions);
       return { ...state, currentPositions: newPositions };
     case MOVE_SQUARE:
+      const movedPositions = changePositions(
+        action.positionNum,
+        state.width,
+        state.currentPositions
+      );
       return state;
     default:
       return state;
