@@ -72,6 +72,15 @@ const changePositions = (positionNum, width, arr) => {
   return arr;
 };
 
+const checkSolved = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== i) {
+      return false;
+    }
+  }
+  return true;
+};
+
 const board = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_BOARD:
@@ -89,7 +98,8 @@ const board = (state = initialState, action) => {
         state.width,
         state.currentPositions
       );
-      return { ...state, currentPositions: movedPositions };
+      const solved = checkSolved(movedPositions);
+      return { ...state, solved: solved, currentPositions: movedPositions };
     default:
       return state;
   }
