@@ -17,14 +17,12 @@ export const createBoard = (width) => {
 };
 
 export const shuffleBoard = () => {
-  console.log("shuffling...");
   return {
     type: SHUFFLE_BOARD,
   };
 };
 
 export const moveSquare = (positionNum) => {
-  console.log("clicked on tile at", positionNum);
   return {
     type: MOVE_SQUARE,
     positionNum,
@@ -91,7 +89,7 @@ const board = (state = initialState, action) => {
       };
     case SHUFFLE_BOARD:
       const newPositions = shuffle(state.currentPositions);
-      return { ...state, currentPositions: newPositions };
+      return { ...state, solved: false, currentPositions: newPositions };
     case MOVE_SQUARE:
       const movedPositions = changePositions(
         action.positionNum,

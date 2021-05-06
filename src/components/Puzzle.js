@@ -11,9 +11,10 @@ class Puzzle extends React.Component {
   }
 
   render() {
-    const { currentPositions } = this.props.board;
+    const { currentPositions, solved } = this.props.board;
     return (
       <div id="game">
+        <h1>Slide Puzzler</h1>
         <div id="puzzle">
           {currentPositions.map((position, idx) => {
             if (position < currentPositions.length - 1) {
@@ -26,6 +27,7 @@ class Puzzle extends React.Component {
           })}
         </div>
         <button onClick={this.props.shuffleBoard}>Shuffle</button>
+        {solved && <h2>Solved!</h2>}
       </div>
     );
   }
