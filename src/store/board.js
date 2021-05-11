@@ -52,21 +52,39 @@ const shuffle = (arr) => {
 };
 
 const changePositions = (positionNum, width, arr) => {
-  let temp = arr[positionNum];
   let isEmpty = width ** 2 - 1;
-  if (arr[positionNum - 1] === isEmpty) {
-    arr[positionNum] = arr[positionNum - 1];
-    arr[positionNum - 1] = temp;
-  } else if (arr[positionNum + 1] === isEmpty) {
-    arr[positionNum] = arr[positionNum + 1];
-    arr[positionNum + 1] = temp;
-  } else if (arr[positionNum - width] === isEmpty) {
-    arr[positionNum] = arr[positionNum - width];
-    arr[positionNum - width] = temp;
-  } else if (arr[positionNum + width] === isEmpty) {
-    arr[positionNum] = arr[positionNum + width];
-    arr[positionNum + width] = temp;
+  const emptySquareIdx = arr.indexOf(isEmpty);
+  const emptySquareRow = Math.floor(emptySquareIdx / width);
+  const emptySquareCol = emptySquareIdx % width;
+  console.log(emptySquareRow, emptySquareCol);
+
+  //Check if empty square is in the same row
+  if (emptySquareRow === Math.floor(positionNum / width)) {
+    console.log("same row");
+    if (emptySquareCol < positionNum % width) {
+      for (let i = emptySquareIdx; i < positionNum; i++) {
+        arr[i] = arr[i + 1];
+      }
+    } else {
+      for (let i = emptySquareIdx; i > positionNum; i--) {
+        arr[i] = arr[i - 1];
+      }
+    }
   }
+  //Check if empty square is in the same column
+  else if (emptySquareCol === positionNum % width) {
+    console.log("same column");
+    if (emptySquareRow < Math.floor(positionNum / width)) {
+      for (let i = emptySquareIdx; i < positionNum; i += width) {
+        arr[i] = arr[i + width];
+      }
+    } else {
+      for (let i = emptySquareIdx; i > positionNum; i -= width) {
+        arr[i] = arr[i - width];
+      }
+    }
+  }
+  arr[positionNum] = isEmpty;
   return arr;
 };
 
