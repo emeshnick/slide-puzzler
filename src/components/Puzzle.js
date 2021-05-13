@@ -27,6 +27,18 @@ class Puzzle extends React.Component {
           })}
         </div>
         <button onClick={this.props.shuffleBoard}>Shuffle</button>
+        <select
+          onChange={(evt) => {
+            this.props.createBoard(evt.target.value);
+          }}
+        >
+          <option value="4">4 x 4</option>
+          <option default value="5">
+            5 x 5
+          </option>
+          <option value="6">6 x 6</option>
+          <option value="7">7 x 7</option>
+        </select>
         {solved && <h2>Solved!</h2>}
       </div>
     );
