@@ -56,11 +56,9 @@ const changePositions = (positionNum, width, arr) => {
   const emptySquareIdx = arr.indexOf(isEmpty);
   const emptySquareRow = Math.floor(emptySquareIdx / width);
   const emptySquareCol = emptySquareIdx % width;
-  console.log(emptySquareRow, emptySquareCol);
 
   //Check if empty square is in the same row
   if (emptySquareRow === Math.floor(positionNum / width)) {
-    console.log("same row");
     if (emptySquareCol < positionNum % width) {
       for (let i = emptySquareIdx; i < positionNum; i++) {
         arr[i] = arr[i + 1];
@@ -73,7 +71,6 @@ const changePositions = (positionNum, width, arr) => {
   }
   //Check if empty square is in the same column
   else if (emptySquareCol === positionNum % width) {
-    console.log("same column");
     if (emptySquareRow < Math.floor(positionNum / width)) {
       for (let i = emptySquareIdx; i < positionNum; i += width) {
         arr[i] = arr[i + width];
