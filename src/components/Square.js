@@ -7,12 +7,9 @@ class Square extends React.Component {
     this.setPosition = this.setPosition.bind(this);
   }
 
-  setPosition(positionNum) {
-    let top =
-      Math.floor(positionNum / this.props.board.width) *
-      (400 / this.props.board.width);
-    let left =
-      (positionNum % this.props.board.width) * (400 / this.props.board.width);
+  setPosition(positionNum, width) {
+    let top = Math.floor(positionNum / width) * (400 / width);
+    let left = (positionNum % width) * (400 / width);
     return {
       top,
       left,
@@ -21,7 +18,7 @@ class Square extends React.Component {
 
   render() {
     const { moveSquare, position, tileNumber } = this.props;
-    const { top, left } = this.setPosition(position);
+    const { top, left } = this.setPosition(position, this.props.board.width);
     const size = 400 / this.props.board.width;
     return (
       <span

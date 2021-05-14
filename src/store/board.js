@@ -51,7 +51,8 @@ const shuffle = (arr) => {
   return arr;
 };
 
-const changePositions = (positionNum, width, arr) => {
+const changePositions = (positionNum, puzzleWidth, arr) => {
+  let width = parseInt(puzzleWidth);
   let isEmpty = width ** 2 - 1;
   const emptySquareIdx = arr.indexOf(isEmpty);
   const emptySquareRow = Math.floor(emptySquareIdx / width);
