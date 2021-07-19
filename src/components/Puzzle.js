@@ -32,8 +32,8 @@ class Puzzle extends React.Component {
             this.props.createBoard(evt.target.value);
           }}
         >
-          <option value={4}>4 x 4</option>
-          <option default value={5}>
+          <option value="4">4 x 4</option>
+          <option default value="5">
             5 x 5
           </option>
           <option value="6">6 x 6</option>

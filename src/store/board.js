@@ -69,6 +69,7 @@ const changePositions = (positionNum, puzzleWidth, arr) => {
         arr[i] = arr[i - 1];
       }
     }
+    arr[positionNum] = isEmpty;
   }
   //Check if empty square is in the same column
   else if (emptySquareCol === positionNum % width) {
@@ -81,8 +82,9 @@ const changePositions = (positionNum, puzzleWidth, arr) => {
         arr[i] = arr[i - width];
       }
     }
+    arr[positionNum] = isEmpty;
   }
-  arr[positionNum] = isEmpty;
+
   return arr;
 };
 
